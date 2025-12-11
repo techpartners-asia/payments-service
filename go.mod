@@ -7,10 +7,16 @@ require (
 	github.com/getsentry/sentry-go v0.40.0
 	github.com/getsentry/sentry-go/fiber v0.40.0
 	github.com/gofiber/fiber/v2 v2.52.10
-	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/spf13/viper v1.21.0
-	golang.org/x/crypto v0.46.0
+	github.com/techpartners-asia/balc-api-go v1.0.0
+	github.com/techpartners-asia/golomt-api-go v0.0.15
+	github.com/techpartners-asia/monpay-go v1.0.0
+	github.com/techpartners-asia/pocket-go v0.0.0-20250109090209-90886b51b423
+	github.com/techpartners-asia/qpay-go v1.0.2
+	github.com/techpartners-asia/simple-go v1.0.2
+	github.com/techpartners-asia/storepay-go v1.0.0
+	github.com/techpartners-asia/tokipay-go v1.0.0
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	gorm.io/driver/postgres v1.6.0
@@ -48,21 +54,13 @@ require (
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
-	github.com/techpartners-asia/balc-api-go v1.0.0 // indirect
-	github.com/techpartners-asia/golomt-api-go v0.0.15 // indirect
-	github.com/techpartners-asia/monpay-go v1.0.0 // indirect
-	github.com/techpartners-asia/payments-gateway v0.0.6 // indirect
-	github.com/techpartners-asia/pocket-go v0.0.0-20250109090209-90886b51b423 // indirect
-	github.com/techpartners-asia/qpay-go v1.0.2 // indirect
-	github.com/techpartners-asia/simple-go v1.0.2 // indirect
-	github.com/techpartners-asia/storepay-go v1.0.0 // indirect
-	github.com/techpartners-asia/tokipay-go v1.0.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.57.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
+	golang.org/x/crypto v0.46.0 // indirect
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.39.0 // indirect

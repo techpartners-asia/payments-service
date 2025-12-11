@@ -39,8 +39,6 @@ github.com/go-viper/mapstructure/v2 v2.4.0 h1:EBsztssimR/CONLSZZ04E8qAkxNYq4Qp9L
 github.com/go-viper/mapstructure/v2 v2.4.0/go.mod h1:oJDH3BJKyqBA2TXFhDsKDGDTlndYOZ6rGS0BRZIxGhM=
 github.com/gofiber/fiber/v2 v2.52.10 h1:jRHROi2BuNti6NYXmZ6gbNSfT3zj/8c0xy94GOU5elY=
 github.com/gofiber/fiber/v2 v2.52.10/go.mod h1:YEcBbO/FB+5M1IZNBP9FO3J9281zgPAreiI1oqg8nDw=
-github.com/golang-jwt/jwt/v4 v4.5.2 h1:YtQM7lnr8iZ+j5q71MGKkNw9Mn7AjHM68uc9g5fXeUI=
-github.com/golang-jwt/jwt/v4 v4.5.2/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
 github.com/golang/protobuf v1.5.4 h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek=
 github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
@@ -123,8 +121,6 @@ github.com/techpartners-asia/golomt-api-go v0.0.15 h1:8mI58q7/QeuVwCKxGDCUhE7rcL
 github.com/techpartners-asia/golomt-api-go v0.0.15/go.mod h1:u49WyLl65gZfVF49Ioe5tiDa8iICLpHxG6Qcoqer12M=
 github.com/techpartners-asia/monpay-go v1.0.0 h1:3nXIlWQyd5vYvmj9nvylNqk1HA+GSqrY7tbPcGBNnSE=
 github.com/techpartners-asia/monpay-go v1.0.0/go.mod h1:khBqayetFO0mj981X1alws+gl8sxW5VpygT2KC0xuRQ=
-github.com/techpartners-asia/payments-gateway v0.0.6 h1:Sj/eE/E30F6KqbEt0Zm0yK39KUFK9x3G63T9uyJQ2FI=
-github.com/techpartners-asia/payments-gateway v0.0.6/go.mod h1:s/OephY0cvV7d4UcToqYNiJ26lil+n7LdgL8kYlFaJs=
 github.com/techpartners-asia/pocket-go v0.0.0-20250109090209-90886b51b423 h1:RL+Kvfdfdog+bsRBw8N3c0AfucR+eXW8kFhqOtkwJuA=
 github.com/techpartners-asia/pocket-go v0.0.0-20250109090209-90886b51b423/go.mod h1:ab81icDfrzNT5SypFmoRM2mwMFbERJ2NS80V2oW7Uhc=
 github.com/techpartners-asia/qpay-go v1.0.2 h1:g0oBAYlQ3qgV00EP22B6C6CUdFQPjw4nIYcfh/J4BVc=
