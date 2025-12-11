@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+message PaymentCreateRequest { 
+    float amount = 1;
+}
+
+message PaymentCreateResponse { 
+    string uid = 1;
+    float amount = 2;
+    PaymentStatus status = 3;
+    string invoiceID = 4;
+}
+
+message PaymentCheckRequest { 
+    string uid = 1;
+}
+
+message PaymentCheckResponse { 
+    string uid = 1;
+    float amount = 2;
+    PaymentStatus status = 3;
+}
+
+enum PaymentStatus { 
+    PAYMENT_STATUS_PENDING     = 0;
+    PAYMENT_STATUS_PAID        = 1;
+    PAYMENT_STATUS_CANCELLED   = 2;
+    PAYMENT_STATUS_REFUNDED    = 3;
+}
+
+
+service PaymentService { 
+    rpc Create(PaymentCreateRequest) returns (PaymentCreateResponse);
+    rpc Check(PaymentCheckRequest) returns (PaymentCheckResponse);
+    rpc CheckStream(PaymentCheckRequest) returns (stream PaymentCheckResponse);
+}

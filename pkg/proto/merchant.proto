@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+
+option go_package = ".";
+
+
+
+message QpayAdapterProto {
+    // QpayAdapter struct
+    string username     = 1;
+    string password     = 2;
+    string endpoint     = 3;
+    string callback     = 4;
+    string invoice_code = 5;
+    string merchant_id  = 6;
+}
+
+message TokipayAdapterProto {
+    // TokipayAdapter struct
+    string endpoint       = 1;
+    string api_key        = 2;
+    string im_api_key     = 3;
+    string authorization  = 4;
+    string merchant_id    = 5;
+    string success_url    = 6;
+    string failure_url    = 7;
+    string app_schema_ios = 8;
+}
+
+message StorePayAdapterProto {
+    // StorePayAdapter struct
+    string app_user_name = 1;
+    string app_password  = 2;
+    string username      = 3;
+    string password      = 4;
+    string auth_url      = 5;
+    string base_url      = 6;
+    string store_id      = 7;
+    string callback_url  = 8;
+}
+
+message SocialPayAdapterProto {
+    // SocialPayAdapter struct
+    string terminal = 1;
+    string secret   = 2;
+    string endpoint = 3;
+}
+
+message PocketAdapterProto {
+    // PocketAdapter struct
+    string merchant       = 1;
+    string client_id      = 2;
+    string client_secret  = 3;
+    string environment    = 4;
+    int64  terminal_id_raw = 5; // Mapped to int64
+}
+
+message MonpayAdapterProto {
+    // MonpayAdapter struct
+    string endpoint   = 1;
+    string username   = 2;
+    string account_id = 3;
+    string callback   = 4;
+}
+
+message GolomtAdapterProto {
+    // GolomtAdapter struct
+    string base_url      = 1;
+    string secret        = 2;
+    string bearer_token  = 3;
+}
+
+message BalcAdapterProto {
+    // BalcAdapter struct
+    string endpoint = 1;
+    string token    = 2;
+}
+
+// --- Generic/Other Adapter ---
+
+message SimpleAdapterProto {
+    // SimpleAdapter struct
+    string user_name    = 1;
+    string password     = 2;
+    string base_url     = 3;
+    string callback_url = 4;
+}
+
+
+message MerchantEbarimtCredentialRequest { 
+    string url = 1;
+    string tin = 2;
+    string posNo = 3;
+    string branchNo = 4;
+    string districtCode = 5;
+}
+
+
+message MerchantPaymentCredentialRequest { 
+    QpayAdapterProto qpay = 1;
+    TokipayAdapterProto tokipay = 2;
+    BalcAdapterProto balc = 3;
+    StorePayAdapterProto storepay = 4;
+    SocialPayAdapterProto socialpay = 5;
+    SimpleAdapterProto simple = 6;
+    PocketAdapterProto pocket = 7;
+    MonpayAdapterProto monpay = 8;
+    GolomtAdapterProto golomt = 9;
+}
+
+message MerchantPaymentCredentialResponse { 
+    string token = 1;
+}
+
+message MerchantResponse { 
+    uint64 id = 1;
+    string name = 2;
+}
+
+message CreateMerchantRequest { 
+    string name = 1;
+    MerchantEbarimtCredentialRequest ebarimtCredential = 2;
+    MerchantPaymentCredentialRequest paymentCredential = 3;
+}
+
+message UpdateRequest { 
+    uint64 id = 1;
+    string name = 2;
+    MerchantEbarimtCredentialRequest ebarimtCredential = 3;
+    MerchantPaymentCredentialRequest paymentCredential = 4;
+}
+
+message MerchantIDRequest { 
+    uint64 id = 1;
+}
+
+message SuccessResponse { 
+    bool success = 1;
+}
+
+service MerchantService { 
+    rpc Create(CreateMerchantRequest) returns (MerchantResponse);
+    rpc GetByID(MerchantIDRequest) returns (MerchantResponse);
+    rpc Update(UpdateRequest) returns (MerchantResponse);
+    rpc Delete(MerchantIDRequest) returns (SuccessResponse);
+}
