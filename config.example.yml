@@ -1,0 +1,19 @@
+app:
+  name: payments-service
+  version: "0.1.0"
+  port: "8080"
+  env: development
+
+db:
+  host: db
+  port: "5432"
+  user: postgres
+  name: payments
+  password: postgres
+  timezone: Asia/Ulaanbaatar
+
+redis:
+  host: redis
+  port: "6379"
+  password: ""
+  db: 0
