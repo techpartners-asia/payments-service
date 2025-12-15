@@ -4,6 +4,11 @@ option go_package = ".";
 
 message PaymentCreateRequest { 
     float amount = 1;
+    PaymentType type = 5;
+    uint64 merchant_id = 6;
+    string phone = 7;
+    uint64 customer_id = 8;
+    string note = 9;
 }
 
 message PaymentCreateResponse { 
@@ -30,7 +35,17 @@ enum PaymentStatus {
     PAYMENT_STATUS_REFUNDED    = 3;
 }
 
-
+enum PaymentType { 
+    PAYMENT_TYPE_QPAY = 0;
+    PAYMENT_TYPE_TOKIPAY = 1;
+    PAYMENT_TYPE_MONPAY = 2;
+    PAYMENT_TYPE_GOLOMT = 3;
+    PAYMENT_TYPE_SOCIALPAY = 4;
+    PAYMENT_TYPE_STOREPAY = 5;
+    PAYMENT_TYPE_POCKET = 6;
+    PAYMENT_TYPE_SIMPLE = 7;
+    PAYMENT_TYPE_BALC = 8;
+}
 service PaymentService { 
     rpc Create(PaymentCreateRequest) returns (PaymentCreateResponse);
     rpc Check(PaymentCheckRequest) returns (PaymentCheckResponse);

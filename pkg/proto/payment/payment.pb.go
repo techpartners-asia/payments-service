@@ -73,9 +73,81 @@ func (PaymentStatus) EnumDescriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{0}
 }
 
+type PaymentType int32
+
+const (
+	PaymentType_PAYMENT_TYPE_QPAY      PaymentType = 0
+	PaymentType_PAYMENT_TYPE_TOKIPAY   PaymentType = 1
+	PaymentType_PAYMENT_TYPE_MONPAY    PaymentType = 2
+	PaymentType_PAYMENT_TYPE_GOLOMT    PaymentType = 3
+	PaymentType_PAYMENT_TYPE_SOCIALPAY PaymentType = 4
+	PaymentType_PAYMENT_TYPE_STOREPAY  PaymentType = 5
+	PaymentType_PAYMENT_TYPE_POCKET    PaymentType = 6
+	PaymentType_PAYMENT_TYPE_SIMPLE    PaymentType = 7
+	PaymentType_PAYMENT_TYPE_BALC      PaymentType = 8
+)
+
+// Enum value maps for PaymentType.
+var (
+	PaymentType_name = map[int32]string{
+		0: "PAYMENT_TYPE_QPAY",
+		1: "PAYMENT_TYPE_TOKIPAY",
+		2: "PAYMENT_TYPE_MONPAY",
+		3: "PAYMENT_TYPE_GOLOMT",
+		4: "PAYMENT_TYPE_SOCIALPAY",
+		5: "PAYMENT_TYPE_STOREPAY",
+		6: "PAYMENT_TYPE_POCKET",
+		7: "PAYMENT_TYPE_SIMPLE",
+		8: "PAYMENT_TYPE_BALC",
+	}
+	PaymentType_value = map[string]int32{
+		"PAYMENT_TYPE_QPAY":      0,
+		"PAYMENT_TYPE_TOKIPAY":   1,
+		"PAYMENT_TYPE_MONPAY":    2,
+		"PAYMENT_TYPE_GOLOMT":    3,
+		"PAYMENT_TYPE_SOCIALPAY": 4,
+		"PAYMENT_TYPE_STOREPAY":  5,
+		"PAYMENT_TYPE_POCKET":    6,
+		"PAYMENT_TYPE_SIMPLE":    7,
+		"PAYMENT_TYPE_BALC":      8,
+	}
+)
+
+func (x PaymentType) Enum() *PaymentType {
+	p := new(PaymentType)
+	*p = x
+	return p
+}
+
+func (x PaymentType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PaymentType) Descriptor() protoreflect.EnumDescriptor {
+	return file_payment_proto_enumTypes[1].Descriptor()
+}
+
+func (PaymentType) Type() protoreflect.EnumType {
+	return &file_payment_proto_enumTypes[1]
+}
+
+func (x PaymentType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PaymentType.Descriptor instead.
+func (PaymentType) EnumDescriptor() ([]byte, []int) {
+	return file_payment_proto_rawDescGZIP(), []int{1}
+}
+
 type PaymentCreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Amount        float32                `protobuf:"fixed32,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	Type          PaymentType            `protobuf:"varint,5,opt,name=type,proto3,enum=PaymentType" json:"type,omitempty"`
+	MerchantId    uint64                 `protobuf:"varint,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	Phone         string                 `protobuf:"bytes,7,opt,name=phone,proto3" json:"phone,omitempty"`
+	CustomerId    uint64                 `protobuf:"varint,8,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	Note          string                 `protobuf:"bytes,9,opt,name=note,proto3" json:"note,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -115,6 +187,41 @@ func (x *PaymentCreateRequest) GetAmount() float32 {
 		return x.Amount
 	}
 	return 0
+}
+
+func (x *PaymentCreateRequest) GetType() PaymentType {
+	if x != nil {
+		return x.Type
+	}
+	return PaymentType_PAYMENT_TYPE_QPAY
+}
+
+func (x *PaymentCreateRequest) GetMerchantId() uint64 {
+	if x != nil {
+		return x.MerchantId
+	}
+	return 0
+}
+
+func (x *PaymentCreateRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *PaymentCreateRequest) GetCustomerId() uint64 {
+	if x != nil {
+		return x.CustomerId
+	}
+	return 0
+}
+
+func (x *PaymentCreateRequest) GetNote() string {
+	if x != nil {
+		return x.Note
+	}
+	return ""
 }
 
 type PaymentCreateResponse struct {
@@ -293,9 +400,16 @@ var File_payment_proto protoreflect.FileDescriptor
 
 const file_payment_proto_rawDesc = "" +
 	"\n" +
-	"\rpayment.proto\".\n" +
+	"\rpayment.proto\"\xbc\x01\n" +
 	"\x14PaymentCreateRequest\x12\x16\n" +
-	"\x06amount\x18\x01 \x01(\x02R\x06amount\"\x87\x01\n" +
+	"\x06amount\x18\x01 \x01(\x02R\x06amount\x12 \n" +
+	"\x04type\x18\x05 \x01(\x0e2\f.PaymentTypeR\x04type\x12\x1f\n" +
+	"\vmerchant_id\x18\x06 \x01(\x04R\n" +
+	"merchantId\x12\x14\n" +
+	"\x05phone\x18\a \x01(\tR\x05phone\x12\x1f\n" +
+	"\vcustomer_id\x18\b \x01(\x04R\n" +
+	"customerId\x12\x12\n" +
+	"\x04note\x18\t \x01(\tR\x04note\"\x87\x01\n" +
 	"\x15PaymentCreateResponse\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12&\n" +
@@ -311,7 +425,17 @@ const file_payment_proto_rawDesc = "" +
 	"\x16PAYMENT_STATUS_PENDING\x10\x00\x12\x17\n" +
 	"\x13PAYMENT_STATUS_PAID\x10\x01\x12\x1c\n" +
 	"\x18PAYMENT_STATUS_CANCELLED\x10\x02\x12\x1b\n" +
-	"\x17PAYMENT_STATUS_REFUNDED\x10\x032\xbd\x01\n" +
+	"\x17PAYMENT_STATUS_REFUNDED\x10\x03*\xf0\x01\n" +
+	"\vPaymentType\x12\x15\n" +
+	"\x11PAYMENT_TYPE_QPAY\x10\x00\x12\x18\n" +
+	"\x14PAYMENT_TYPE_TOKIPAY\x10\x01\x12\x17\n" +
+	"\x13PAYMENT_TYPE_MONPAY\x10\x02\x12\x17\n" +
+	"\x13PAYMENT_TYPE_GOLOMT\x10\x03\x12\x1a\n" +
+	"\x16PAYMENT_TYPE_SOCIALPAY\x10\x04\x12\x19\n" +
+	"\x15PAYMENT_TYPE_STOREPAY\x10\x05\x12\x17\n" +
+	"\x13PAYMENT_TYPE_POCKET\x10\x06\x12\x17\n" +
+	"\x13PAYMENT_TYPE_SIMPLE\x10\a\x12\x15\n" +
+	"\x11PAYMENT_TYPE_BALC\x10\b2\xbd\x01\n" +
 	"\x0ePaymentService\x127\n" +
 	"\x06Create\x12\x15.PaymentCreateRequest\x1a\x16.PaymentCreateResponse\x124\n" +
 	"\x05Check\x12\x14.PaymentCheckRequest\x1a\x15.PaymentCheckResponse\x12<\n" +
@@ -329,29 +453,31 @@ func file_payment_proto_rawDescGZIP() []byte {
 	return file_payment_proto_rawDescData
 }
 
-var file_payment_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_payment_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_payment_proto_goTypes = []any{
 	(PaymentStatus)(0),            // 0: PaymentStatus
-	(*PaymentCreateRequest)(nil),  // 1: PaymentCreateRequest
-	(*PaymentCreateResponse)(nil), // 2: PaymentCreateResponse
-	(*PaymentCheckRequest)(nil),   // 3: PaymentCheckRequest
-	(*PaymentCheckResponse)(nil),  // 4: PaymentCheckResponse
+	(PaymentType)(0),              // 1: PaymentType
+	(*PaymentCreateRequest)(nil),  // 2: PaymentCreateRequest
+	(*PaymentCreateResponse)(nil), // 3: PaymentCreateResponse
+	(*PaymentCheckRequest)(nil),   // 4: PaymentCheckRequest
+	(*PaymentCheckResponse)(nil),  // 5: PaymentCheckResponse
 }
 var file_payment_proto_depIdxs = []int32{
-	0, // 0: PaymentCreateResponse.status:type_name -> PaymentStatus
-	0, // 1: PaymentCheckResponse.status:type_name -> PaymentStatus
-	1, // 2: PaymentService.Create:input_type -> PaymentCreateRequest
-	3, // 3: PaymentService.Check:input_type -> PaymentCheckRequest
-	3, // 4: PaymentService.CheckStream:input_type -> PaymentCheckRequest
-	2, // 5: PaymentService.Create:output_type -> PaymentCreateResponse
-	4, // 6: PaymentService.Check:output_type -> PaymentCheckResponse
-	4, // 7: PaymentService.CheckStream:output_type -> PaymentCheckResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: PaymentCreateRequest.type:type_name -> PaymentType
+	0, // 1: PaymentCreateResponse.status:type_name -> PaymentStatus
+	0, // 2: PaymentCheckResponse.status:type_name -> PaymentStatus
+	2, // 3: PaymentService.Create:input_type -> PaymentCreateRequest
+	4, // 4: PaymentService.Check:input_type -> PaymentCheckRequest
+	4, // 5: PaymentService.CheckStream:input_type -> PaymentCheckRequest
+	3, // 6: PaymentService.Create:output_type -> PaymentCreateResponse
+	5, // 7: PaymentService.Check:output_type -> PaymentCheckResponse
+	5, // 8: PaymentService.CheckStream:output_type -> PaymentCheckResponse
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_payment_proto_init() }
@@ -364,7 +490,7 @@ func file_payment_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_payment_proto_rawDesc), len(file_payment_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
