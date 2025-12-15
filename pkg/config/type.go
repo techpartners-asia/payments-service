@@ -14,7 +14,7 @@ type (
 	}
 	DB struct {
 		Host     string `json:"host"`
-		Port     string `json:"port"`
+		Port     int    `json:"port"`
 		User     string `json:"user"`
 		Name     string `json:"name"`
 		Password string `json:"password"`

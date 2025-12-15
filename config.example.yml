@@ -4,16 +4,20 @@ app:
   port: "8080"
   env: development
 
+# Database Configuration
+# Update these values to connect to your PostgreSQL instance
 db:
-  host: db
-  port: "5432"
-  user: postgres
-  name: payments
-  password: postgres
+  host: localhost # Your PostgreSQL host (e.g., localhost, db.example.com, or IP address)
+  port: "5432" # PostgreSQL port
+  user: postgres # Database user
+  name: payments # Database name
+  password: postgres # Database password
   timezone: Asia/Ulaanbaatar
 
+# Redis Configuration
+# Update these values to connect to your Redis instance
 redis:
-  host: redis
-  port: "6379"
-  password: ""
-  db: 0
+  host: localhost # Your Redis host (e.g., localhost, redis.example.com, or IP address)
+  port: "6379" # Redis port
+  password: "" # Redis password (leave empty if no password)
+  db: 0 # Redis database number

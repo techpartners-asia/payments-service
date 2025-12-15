@@ -18,7 +18,7 @@ func Init() {
 
 		viper.SetConfigName("config")
 		viper.SetConfigType("yml")
-		viper.AddConfigPath("../../")
+		viper.AddConfigPath(".")
 
 		if err := viper.ReadInConfig(); err != nil {
 			panic(err)

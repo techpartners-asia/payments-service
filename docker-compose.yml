@@ -1,37 +1,48 @@
 services:
-  payments-service:
-    build: .
+  # Payments Service - HTTP Server
+  payments-service-http:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payments-service-http
+    # Use relative path, relying on WORKDIR /app
+    command: ["./payments-service-http"]
     ports:
       - "8080:8080"
-    depends_on:
-      - db
-      - redis
     volumes:
-      # Override config if you customize it locally
-      - ./config.example.yml:/app/config.yml:ro
+      - ./config.yml:/app/config.yml:ro
+      - ./logs:/app/logs
     environment:
-      # For visibility in container logs; config is file-based.
       - TZ=Asia/Ulaanbaatar
+    restart: unless-stopped
+    healthcheck:
+      # Use the correct binary name for pgrep
+      test: ["CMD", "pgrep", "-f", "payments-service-http"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
-  db:
-    image: postgres:16
+  # Payments Service - gRPC Server
+  payments-service-grpc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payments-service-grpc
+    # Command is not strictly necessary here, as it defaults to the Dockerfile's CMD
+    # but for completeness:
+    command: ["/home/main"]
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./logs:/app/logs
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: payments
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7
-    command: ["redis-server", "--appendonly", "yes"]
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-volumes:
-  db_data:
-  redis_data:
+      - TZ=Asia/Ulaanbaatar
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "payments-service-grpc"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

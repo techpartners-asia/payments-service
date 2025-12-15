@@ -16,17 +16,23 @@ var (
 )
 
 func Init() {
+	fmt.Println(configPkg.Env.DB)
 	once.Do(func() {
 		db, err := gorm.Open(postgres.Open(
-			fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+			fmt.Sprintf("host=%s port=%d user=%s dbname=%s password=%s sslmode=disable TimeZone=%s",
 				configPkg.Env.DB.Host,
 				configPkg.Env.DB.Port,
 				configPkg.Env.DB.User,
-				configPkg.Env.DB.Password,
 				configPkg.Env.DB.Name,
+				configPkg.Env.DB.Password,
+				configPkg.Env.DB.Timezone,
 			),
 		),
-			&gorm.Config{},
+			&gorm.Config{
+				PrepareStmt:                              true,
+				SkipDefaultTransaction:                   true,
+				DisableForeignKeyConstraintWhenMigrating: true,
+			},
 		)
 		if err != nil {
 			log.Fatalf("Failed to connect to database: %v", err)

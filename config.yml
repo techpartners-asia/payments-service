@@ -1,0 +1,23 @@
+app:
+  name: payments-service
+  version: "0.1.0"
+  port: "8080"
+  env: development
+
+# Database Configuration
+# Update these values to connect to your PostgreSQL instance
+db:
+  host: localhost # Your PostgreSQL host (e.g., localhost, db.example.com, or IP address)
+  port: 5432 # PostgreSQL port
+  user: test # Database user
+  name: payments # Database name
+  password: test # Database password
+  timezone: Asia/Ulaanbaatar
+
+# Redis Configuration
+# Update these values to connect to your Redis instance
+redis:
+  host: localhost # Your Redis host (e.g., localhost, redis.example.com, or IP address)
+  port: "6379" # Redis port
+  password: "3G\u00262}tn8+PFzVj88" # Redis password (leave empty if no password)
+  db: 0 # Redis database number

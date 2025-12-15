@@ -1,4 +1,4 @@
-package server
+package serverCmd
 
 import (
 	httpDeliveryRoutes "github.com/techpartners-asia/payments-service/internal/delivery/http/routes"
