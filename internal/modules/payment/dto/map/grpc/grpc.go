@@ -1,8 +1,8 @@
 package grpcMapDTO
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	paymentProto "github.com/techpartners-asia/payments-service/pkg/proto/payment"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	paymentProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment"
 )
 
 func ToPaymentStatus(status entity.PaymentStatus) paymentProto.PaymentStatus {

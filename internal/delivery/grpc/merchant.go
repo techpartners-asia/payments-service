@@ -1,10 +1,10 @@
 package grpcRoutes
 
 import (
-	repositoryRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/repository"
-	repositoryMerchant "github.com/techpartners-asia/payments-service/internal/modules/merchant/repository"
-	usecaseMerchant "github.com/techpartners-asia/payments-service/internal/modules/merchant/usecase"
-	merchantProto "github.com/techpartners-asia/payments-service/pkg/proto/merchant"
+	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
+	repositoryMerchant "git.techpartners.asia/gateway-services/payment-service/internal/modules/merchant/repository"
+	usecaseMerchant "git.techpartners.asia/gateway-services/payment-service/internal/modules/merchant/usecase"
+	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 	"google.golang.org/grpc"
 )
 

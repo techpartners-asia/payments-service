@@ -3,13 +3,13 @@ package paymentService
 import (
 	"errors"
 
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	"github.com/techpartners-asia/payments-service/infrastructure/payment/adapters"
-	paymentServiceResponseDTO "github.com/techpartners-asia/payments-service/infrastructure/payment/dto/response"
-	repositoryRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/repository"
-	usecaseRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/usecase"
-	sharedDTO "github.com/techpartners-asia/payments-service/infrastructure/shared"
-	repositoryPayment "github.com/techpartners-asia/payments-service/internal/modules/payment/repository"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/payment/adapters"
+	paymentServiceResponseDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/payment/dto/response"
+	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
+	usecaseRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/usecase"
+	sharedDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/shared"
+	repositoryPayment "git.techpartners.asia/gateway-services/payment-service/internal/modules/payment/repository"
 )
 
 type PaymentService interface {

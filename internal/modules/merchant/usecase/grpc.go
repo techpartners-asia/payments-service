@@ -3,12 +3,12 @@ package usecaseMerchant
 import (
 	"context"
 
-	repositoryRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/repository"
-	usecaseRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/usecase"
-	grpcMerchantRequestDTO "github.com/techpartners-asia/payments-service/internal/modules/merchant/dto/request/grpc"
-	grpcMerchantResponseDTO "github.com/techpartners-asia/payments-service/internal/modules/merchant/dto/response/grpc"
-	repositoryMerchant "github.com/techpartners-asia/payments-service/internal/modules/merchant/repository"
-	merchantProto "github.com/techpartners-asia/payments-service/pkg/proto/merchant"
+	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
+	usecaseRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/usecase"
+	grpcMerchantRequestDTO "git.techpartners.asia/gateway-services/payment-service/internal/modules/merchant/dto/request/grpc"
+	grpcMerchantResponseDTO "git.techpartners.asia/gateway-services/payment-service/internal/modules/merchant/dto/response/grpc"
+	repositoryMerchant "git.techpartners.asia/gateway-services/payment-service/internal/modules/merchant/repository"
+	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

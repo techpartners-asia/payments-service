@@ -1,6 +1,6 @@
 package repositoryPayment
 
-import "github.com/techpartners-asia/payments-service/infrastructure/database/entity"
+import "git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 
 type PaymentRepository interface {
 	CreatePayment(payment *entity.PaymentEntity) (*entity.PaymentEntity, error)

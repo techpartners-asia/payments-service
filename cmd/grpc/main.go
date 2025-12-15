@@ -4,11 +4,11 @@ import (
 	"log"
 	"net"
 
-	"github.com/techpartners-asia/payments-service/infrastructure/database"
-	repositoryImpl "github.com/techpartners-asia/payments-service/infrastructure/database/repository"
-	redisService "github.com/techpartners-asia/payments-service/infrastructure/redis"
-	repositoryRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/repository"
-	grpcRoutes "github.com/techpartners-asia/payments-service/internal/delivery/grpc"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database"
+	repositoryImpl "git.techpartners.asia/gateway-services/payment-service/infrastructure/database/repository"
+	redisService "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis"
+	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
+	grpcRoutes "git.techpartners.asia/gateway-services/payment-service/internal/delivery/grpc"
 	"google.golang.org/grpc"
 )
 

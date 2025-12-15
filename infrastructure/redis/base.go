@@ -6,8 +6,8 @@ import (
 	"log"
 	"sync"
 
+	configPkg "git.techpartners.asia/gateway-services/payment-service/pkg/config"
 	"github.com/redis/go-redis/v9"
-	configPkg "github.com/techpartners-asia/payments-service/pkg/config"
 )
 
 var (

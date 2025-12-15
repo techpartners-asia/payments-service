@@ -1,4 +1,4 @@
-module github.com/techpartners-asia/payments-service
+module git.techpartners.asia/gateway-services/payment-service
 
 go 1.25.4
 
@@ -69,4 +69,4 @@ require (
 	resty.dev/v3 v3.0.0-beta.3 // indirect
 )
 
-replace github.com/techpartners-asia/payments-service/pkg/proto/payment => ./pkg/proto/payment
+replace git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment => ./pkg/proto/payment

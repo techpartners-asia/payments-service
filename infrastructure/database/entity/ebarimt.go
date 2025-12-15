@@ -1,6 +1,6 @@
 package entity
 
-import databaseBase "github.com/techpartners-asia/payments-service/infrastructure/database/base"
+import databaseBase "git.techpartners.asia/gateway-services/payment-service/infrastructure/database/base"
 
 type (
 	EbarimtEntity struct {

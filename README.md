@@ -419,7 +419,7 @@ The HTTP API is built with Fiber and currently serves as a REST interface (route
 import (
     "context"
     "google.golang.org/grpc"
-    paymentProto "github.com/techpartners-asia/payments-service/pkg/proto/payment"
+    paymentProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment"
 )
 
 conn, _ := grpc.Dial("localhost:50051", grpc.WithInsecure())

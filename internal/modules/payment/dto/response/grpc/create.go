@@ -1,9 +1,9 @@
 package grpcResponseDTO
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	grpcMapDTO "github.com/techpartners-asia/payments-service/internal/modules/payment/dto/map/grpc"
-	paymentProto "github.com/techpartners-asia/payments-service/pkg/proto/payment"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	grpcMapDTO "git.techpartners.asia/gateway-services/payment-service/internal/modules/payment/dto/map/grpc"
+	paymentProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment"
 )
 
 // ToCreateResponse converts an internal Entity into a Protobuf response.

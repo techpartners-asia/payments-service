@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	paymentServiceResponseDTO "github.com/techpartners-asia/payments-service/infrastructure/payment/dto/response"
-	sharedDTO "github.com/techpartners-asia/payments-service/infrastructure/shared"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	paymentServiceResponseDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/payment/dto/response"
+	sharedDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/shared"
 
 	simple "github.com/techpartners-asia/simple-go"
 )

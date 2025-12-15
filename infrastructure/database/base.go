@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	configPkg "github.com/techpartners-asia/payments-service/pkg/config"
+	configPkg "git.techpartners.asia/gateway-services/payment-service/pkg/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

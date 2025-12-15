@@ -1,7 +1,7 @@
 package repositoryImpl
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 	"gorm.io/gorm"
 )
 

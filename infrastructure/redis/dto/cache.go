@@ -1,9 +1,9 @@
 package redisDTO
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	sharedDTO "github.com/techpartners-asia/payments-service/infrastructure/shared"
-	merchantProto "github.com/techpartners-asia/payments-service/pkg/proto/merchant"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	sharedDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/shared"
+	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 )
 
 type (

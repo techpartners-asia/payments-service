@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	sharedDTO "github.com/techpartners-asia/payments-service/internal/shared/dto"
-	utilsPkg "github.com/techpartners-asia/payments-service/pkg/utils"
+	sharedDTO "git.techpartners.asia/gateway-services/payment-service/internal/shared/dto"
+	utilsPkg "git.techpartners.asia/gateway-services/payment-service/pkg/utils"
 	"gorm.io/gorm"
 )
 

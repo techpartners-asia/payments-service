@@ -1,8 +1,8 @@
 package grpcMerchantRequestDTO
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	merchantProto "github.com/techpartners-asia/payments-service/pkg/proto/merchant"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 )
 
 func ToEntity(req *merchantProto.CreateMerchantRequest) *entity.MerchantEntity {

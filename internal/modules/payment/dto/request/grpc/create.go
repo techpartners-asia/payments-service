@@ -1,9 +1,9 @@
 package grpcRequestDTO
 
 import (
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 
-	paymentProto "github.com/techpartners-asia/payments-service/pkg/proto/payment"
+	paymentProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment"
 )
 
 func ToEntity(req *paymentProto.PaymentCreateRequest) *entity.PaymentEntity {

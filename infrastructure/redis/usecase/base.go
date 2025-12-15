@@ -4,10 +4,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/techpartners-asia/payments-service/infrastructure/database/entity"
-	redisDTO "github.com/techpartners-asia/payments-service/infrastructure/redis/dto"
-	repositoryRedis "github.com/techpartners-asia/payments-service/infrastructure/redis/repository"
-	merchantProto "github.com/techpartners-asia/payments-service/pkg/proto/merchant"
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
+	redisDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/dto"
+	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
+	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 )
 
 const (

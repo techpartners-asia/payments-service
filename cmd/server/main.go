@@ -1,9 +1,9 @@
 package serverCmd
 
 import (
-	httpDeliveryRoutes "github.com/techpartners-asia/payments-service/internal/delivery/http/routes"
-	configPkg "github.com/techpartners-asia/payments-service/pkg/config"
-	fiberPkg "github.com/techpartners-asia/payments-service/pkg/fiber"
+	httpDeliveryRoutes "git.techpartners.asia/gateway-services/payment-service/internal/delivery/http/routes"
+	configPkg "git.techpartners.asia/gateway-services/payment-service/pkg/config"
+	fiberPkg "git.techpartners.asia/gateway-services/payment-service/pkg/fiber"
 )
 
 func Run() {
