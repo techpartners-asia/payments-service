@@ -52,7 +52,7 @@ func (u *paymentUsecase) Create(ctx context.Context, req *paymentProto.PaymentCr
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return grpcResponseDTO.ToCreateResponse(updatedInstance), nil
+	return grpcResponseDTO.ToCreateResponse(updatedInstance, result), nil
 }
 
 func (u *paymentUsecase) Check(ctx context.Context, req *paymentProto.PaymentCheckRequest) (*paymentProto.PaymentCheckResponse, error) {

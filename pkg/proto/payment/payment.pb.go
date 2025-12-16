@@ -9,6 +9,7 @@ package __
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -224,19 +225,161 @@ func (x *PaymentCreateRequest) GetNote() string {
 	return ""
 }
 
+type InvoiceResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BankInvoiceId string                 `protobuf:"bytes,1,opt,name=bank_invoice_id,json=bankInvoiceId,proto3" json:"bank_invoice_id,omitempty"`
+	BankQrCode    string                 `protobuf:"bytes,2,opt,name=bank_qr_code,json=bankQrCode,proto3" json:"bank_qr_code,omitempty"`
+	Deeplinks     []*Deeplink            `protobuf:"bytes,3,rep,name=deeplinks,proto3" json:"deeplinks,omitempty"`
+	IsPaid        bool                   `protobuf:"varint,4,opt,name=is_paid,json=isPaid,proto3" json:"is_paid,omitempty"`
+	Raw           *anypb.Any             `protobuf:"bytes,5,opt,name=raw,proto3" json:"raw,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InvoiceResult) Reset() {
+	*x = InvoiceResult{}
+	mi := &file_payment_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InvoiceResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InvoiceResult) ProtoMessage() {}
+
+func (x *InvoiceResult) ProtoReflect() protoreflect.Message {
+	mi := &file_payment_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InvoiceResult.ProtoReflect.Descriptor instead.
+func (*InvoiceResult) Descriptor() ([]byte, []int) {
+	return file_payment_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *InvoiceResult) GetBankInvoiceId() string {
+	if x != nil {
+		return x.BankInvoiceId
+	}
+	return ""
+}
+
+func (x *InvoiceResult) GetBankQrCode() string {
+	if x != nil {
+		return x.BankQrCode
+	}
+	return ""
+}
+
+func (x *InvoiceResult) GetDeeplinks() []*Deeplink {
+	if x != nil {
+		return x.Deeplinks
+	}
+	return nil
+}
+
+func (x *InvoiceResult) GetIsPaid() bool {
+	if x != nil {
+		return x.IsPaid
+	}
+	return false
+}
+
+func (x *InvoiceResult) GetRaw() *anypb.Any {
+	if x != nil {
+		return x.Raw
+	}
+	return nil
+}
+
+type Deeplink struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Link          string                 `protobuf:"bytes,3,opt,name=link,proto3" json:"link,omitempty"`
+	Logo          string                 `protobuf:"bytes,4,opt,name=logo,proto3" json:"logo,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Deeplink) Reset() {
+	*x = Deeplink{}
+	mi := &file_payment_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Deeplink) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Deeplink) ProtoMessage() {}
+
+func (x *Deeplink) ProtoReflect() protoreflect.Message {
+	mi := &file_payment_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Deeplink.ProtoReflect.Descriptor instead.
+func (*Deeplink) Descriptor() ([]byte, []int) {
+	return file_payment_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Deeplink) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Deeplink) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Deeplink) GetLink() string {
+	if x != nil {
+		return x.Link
+	}
+	return ""
+}
+
+func (x *Deeplink) GetLogo() string {
+	if x != nil {
+		return x.Logo
+	}
+	return ""
+}
+
 type PaymentCreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	Amount        float32                `protobuf:"fixed32,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	Status        PaymentStatus          `protobuf:"varint,3,opt,name=status,proto3,enum=PaymentStatus" json:"status,omitempty"`
-	InvoiceID     string                 `protobuf:"bytes,4,opt,name=invoiceID,proto3" json:"invoiceID,omitempty"`
+	InvoiceResult *InvoiceResult         `protobuf:"bytes,2,opt,name=invoiceResult,proto3" json:"invoiceResult,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PaymentCreateResponse) Reset() {
 	*x = PaymentCreateResponse{}
-	mi := &file_payment_proto_msgTypes[1]
+	mi := &file_payment_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +391,7 @@ func (x *PaymentCreateResponse) String() string {
 func (*PaymentCreateResponse) ProtoMessage() {}
 
 func (x *PaymentCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_payment_proto_msgTypes[1]
+	mi := &file_payment_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +404,7 @@ func (x *PaymentCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaymentCreateResponse.ProtoReflect.Descriptor instead.
 func (*PaymentCreateResponse) Descriptor() ([]byte, []int) {
-	return file_payment_proto_rawDescGZIP(), []int{1}
+	return file_payment_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PaymentCreateResponse) GetUid() string {
@@ -271,25 +414,11 @@ func (x *PaymentCreateResponse) GetUid() string {
 	return ""
 }
 
-func (x *PaymentCreateResponse) GetAmount() float32 {
+func (x *PaymentCreateResponse) GetInvoiceResult() *InvoiceResult {
 	if x != nil {
-		return x.Amount
+		return x.InvoiceResult
 	}
-	return 0
-}
-
-func (x *PaymentCreateResponse) GetStatus() PaymentStatus {
-	if x != nil {
-		return x.Status
-	}
-	return PaymentStatus_PAYMENT_STATUS_PENDING
-}
-
-func (x *PaymentCreateResponse) GetInvoiceID() string {
-	if x != nil {
-		return x.InvoiceID
-	}
-	return ""
+	return nil
 }
 
 type PaymentCheckRequest struct {
@@ -301,7 +430,7 @@ type PaymentCheckRequest struct {
 
 func (x *PaymentCheckRequest) Reset() {
 	*x = PaymentCheckRequest{}
-	mi := &file_payment_proto_msgTypes[2]
+	mi := &file_payment_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -313,7 +442,7 @@ func (x *PaymentCheckRequest) String() string {
 func (*PaymentCheckRequest) ProtoMessage() {}
 
 func (x *PaymentCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_payment_proto_msgTypes[2]
+	mi := &file_payment_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -326,7 +455,7 @@ func (x *PaymentCheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaymentCheckRequest.ProtoReflect.Descriptor instead.
 func (*PaymentCheckRequest) Descriptor() ([]byte, []int) {
-	return file_payment_proto_rawDescGZIP(), []int{2}
+	return file_payment_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PaymentCheckRequest) GetUid() string {
@@ -347,7 +476,7 @@ type PaymentCheckResponse struct {
 
 func (x *PaymentCheckResponse) Reset() {
 	*x = PaymentCheckResponse{}
-	mi := &file_payment_proto_msgTypes[3]
+	mi := &file_payment_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -359,7 +488,7 @@ func (x *PaymentCheckResponse) String() string {
 func (*PaymentCheckResponse) ProtoMessage() {}
 
 func (x *PaymentCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_payment_proto_msgTypes[3]
+	mi := &file_payment_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -372,7 +501,7 @@ func (x *PaymentCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaymentCheckResponse.ProtoReflect.Descriptor instead.
 func (*PaymentCheckResponse) Descriptor() ([]byte, []int) {
-	return file_payment_proto_rawDescGZIP(), []int{3}
+	return file_payment_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PaymentCheckResponse) GetUid() string {
@@ -400,7 +529,7 @@ var File_payment_proto protoreflect.FileDescriptor
 
 const file_payment_proto_rawDesc = "" +
 	"\n" +
-	"\rpayment.proto\"\xbc\x01\n" +
+	"\rpayment.proto\x1a\x19google/protobuf/any.proto\"\xbc\x01\n" +
 	"\x14PaymentCreateRequest\x12\x16\n" +
 	"\x06amount\x18\x01 \x01(\x02R\x06amount\x12 \n" +
 	"\x04type\x18\x05 \x01(\x0e2\f.PaymentTypeR\x04type\x12\x1f\n" +
@@ -409,12 +538,22 @@ const file_payment_proto_rawDesc = "" +
 	"\x05phone\x18\a \x01(\tR\x05phone\x12\x1f\n" +
 	"\vcustomer_id\x18\b \x01(\x04R\n" +
 	"customerId\x12\x12\n" +
-	"\x04note\x18\t \x01(\tR\x04note\"\x87\x01\n" +
+	"\x04note\x18\t \x01(\tR\x04note\"\xc3\x01\n" +
+	"\rInvoiceResult\x12&\n" +
+	"\x0fbank_invoice_id\x18\x01 \x01(\tR\rbankInvoiceId\x12 \n" +
+	"\fbank_qr_code\x18\x02 \x01(\tR\n" +
+	"bankQrCode\x12'\n" +
+	"\tdeeplinks\x18\x03 \x03(\v2\t.DeeplinkR\tdeeplinks\x12\x17\n" +
+	"\ais_paid\x18\x04 \x01(\bR\x06isPaid\x12&\n" +
+	"\x03raw\x18\x05 \x01(\v2\x14.google.protobuf.AnyR\x03raw\"h\n" +
+	"\bDeeplink\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
+	"\x04link\x18\x03 \x01(\tR\x04link\x12\x12\n" +
+	"\x04logo\x18\x04 \x01(\tR\x04logo\"_\n" +
 	"\x15PaymentCreateResponse\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12&\n" +
-	"\x06status\x18\x03 \x01(\x0e2\x0e.PaymentStatusR\x06status\x12\x1c\n" +
-	"\tinvoiceID\x18\x04 \x01(\tR\tinvoiceID\"'\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x124\n" +
+	"\rinvoiceResult\x18\x02 \x01(\v2\x0e.InvoiceResultR\rinvoiceResult\"'\n" +
 	"\x13PaymentCheckRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\"h\n" +
 	"\x14PaymentCheckResponse\x12\x10\n" +
@@ -454,30 +593,35 @@ func file_payment_proto_rawDescGZIP() []byte {
 }
 
 var file_payment_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_payment_proto_goTypes = []any{
 	(PaymentStatus)(0),            // 0: PaymentStatus
 	(PaymentType)(0),              // 1: PaymentType
 	(*PaymentCreateRequest)(nil),  // 2: PaymentCreateRequest
-	(*PaymentCreateResponse)(nil), // 3: PaymentCreateResponse
-	(*PaymentCheckRequest)(nil),   // 4: PaymentCheckRequest
-	(*PaymentCheckResponse)(nil),  // 5: PaymentCheckResponse
+	(*InvoiceResult)(nil),         // 3: InvoiceResult
+	(*Deeplink)(nil),              // 4: Deeplink
+	(*PaymentCreateResponse)(nil), // 5: PaymentCreateResponse
+	(*PaymentCheckRequest)(nil),   // 6: PaymentCheckRequest
+	(*PaymentCheckResponse)(nil),  // 7: PaymentCheckResponse
+	(*anypb.Any)(nil),             // 8: google.protobuf.Any
 }
 var file_payment_proto_depIdxs = []int32{
 	1, // 0: PaymentCreateRequest.type:type_name -> PaymentType
-	0, // 1: PaymentCreateResponse.status:type_name -> PaymentStatus
-	0, // 2: PaymentCheckResponse.status:type_name -> PaymentStatus
-	2, // 3: PaymentService.Create:input_type -> PaymentCreateRequest
-	4, // 4: PaymentService.Check:input_type -> PaymentCheckRequest
-	4, // 5: PaymentService.CheckStream:input_type -> PaymentCheckRequest
-	3, // 6: PaymentService.Create:output_type -> PaymentCreateResponse
-	5, // 7: PaymentService.Check:output_type -> PaymentCheckResponse
-	5, // 8: PaymentService.CheckStream:output_type -> PaymentCheckResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 1: InvoiceResult.deeplinks:type_name -> Deeplink
+	8, // 2: InvoiceResult.raw:type_name -> google.protobuf.Any
+	3, // 3: PaymentCreateResponse.invoiceResult:type_name -> InvoiceResult
+	0, // 4: PaymentCheckResponse.status:type_name -> PaymentStatus
+	2, // 5: PaymentService.Create:input_type -> PaymentCreateRequest
+	6, // 6: PaymentService.Check:input_type -> PaymentCheckRequest
+	6, // 7: PaymentService.CheckStream:input_type -> PaymentCheckRequest
+	5, // 8: PaymentService.Create:output_type -> PaymentCreateResponse
+	7, // 9: PaymentService.Check:output_type -> PaymentCheckResponse
+	7, // 10: PaymentService.CheckStream:output_type -> PaymentCheckResponse
+	8, // [8:11] is the sub-list for method output_type
+	5, // [5:8] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_payment_proto_init() }
@@ -491,7 +635,7 @@ func file_payment_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_payment_proto_rawDesc), len(file_payment_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

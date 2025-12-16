@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option go_package = ".";
 
+import "google/protobuf/any.proto";
+
 message PaymentCreateRequest { 
     float amount = 1;
     PaymentType type = 5;
@@ -11,11 +13,39 @@ message PaymentCreateRequest {
     string note = 9;
 }
 
+	// InvoiceResult struct {
+	// 	BankInvoiceID string     `json:"bank_invoice_id"`
+	// 	BankQRCode    string     `json:"bank_qr_code"`
+	// 	Deeplinks     []Deeplink `json:"deeplinks"`
+	// 	IsPaid        bool       `json:"is_paid"`
+	// 	Raw           any        `json:"raw"`
+	// }
+
+	// Deeplink struct {
+	// 	Name        string `json:"name"`
+	// 	Description string `json:"description"`
+	// 	Link        string `json:"link"`
+	// 	Logo        string `json:"logo"`
+	// }
+
+message InvoiceResult { 
+    string bank_invoice_id = 1;
+    string bank_qr_code = 2;
+    repeated Deeplink deeplinks = 3;
+    bool is_paid = 4;
+    google.protobuf.Any raw = 5;
+}
+
+message Deeplink { 
+    string name = 1;
+    string description = 2;
+    string link = 3;
+    string logo = 4;
+}
+
 message PaymentCreateResponse { 
     string uid = 1;
-    float amount = 2;
-    PaymentStatus status = 3;
-    string invoiceID = 4;
+    InvoiceResult invoiceResult = 2;
 }
 
 message PaymentCheckRequest { 
