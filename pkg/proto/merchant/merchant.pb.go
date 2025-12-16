@@ -636,6 +636,7 @@ type SimpleAdapterProto struct {
 	Password      string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	BaseUrl       string `protobuf:"bytes,3,opt,name=base_url,json=baseUrl,proto3" json:"base_url,omitempty"`
 	CallbackUrl   string `protobuf:"bytes,4,opt,name=callback_url,json=callbackUrl,proto3" json:"callback_url,omitempty"`
+	SimpleId      string `protobuf:"bytes,5,opt,name=simple_id,json=simpleId,proto3" json:"simple_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -694,6 +695,13 @@ func (x *SimpleAdapterProto) GetBaseUrl() string {
 func (x *SimpleAdapterProto) GetCallbackUrl() string {
 	if x != nil {
 		return x.CallbackUrl
+	}
+	return ""
+}
+
+func (x *SimpleAdapterProto) GetSimpleId() string {
+	if x != nil {
+		return x.SimpleId
 	}
 	return ""
 }
@@ -1259,12 +1267,13 @@ const file_merchant_proto_rawDesc = "" +
 	"\fbearer_token\x18\x03 \x01(\tR\vbearerToken\"D\n" +
 	"\x10BalcAdapterProto\x12\x1a\n" +
 	"\bendpoint\x18\x01 \x01(\tR\bendpoint\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"\x8b\x01\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xa8\x01\n" +
 	"\x12SimpleAdapterProto\x12\x1b\n" +
 	"\tuser_name\x18\x01 \x01(\tR\buserName\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x19\n" +
 	"\bbase_url\x18\x03 \x01(\tR\abaseUrl\x12!\n" +
-	"\fcallback_url\x18\x04 \x01(\tR\vcallbackUrl\"\x9c\x01\n" +
+	"\fcallback_url\x18\x04 \x01(\tR\vcallbackUrl\x12\x1b\n" +
+	"\tsimple_id\x18\x05 \x01(\tR\bsimpleId\"\x9c\x01\n" +
 	" MerchantEbarimtCredentialRequest\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x10\n" +
 	"\x03tin\x18\x02 \x01(\tR\x03tin\x12\x14\n" +

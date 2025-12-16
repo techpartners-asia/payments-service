@@ -113,6 +113,7 @@ func ToRedisCachePaymentDTO(req *merchantProto.MerchantPaymentCredentialRequest)
 			Password:    req.Simple.Password,
 			BaseUrl:     req.Simple.BaseUrl,
 			CallbackUrl: req.Simple.CallbackUrl,
+			SimpleID:    req.Simple.SimpleId,
 		}
 	}
 	if req.Balc != nil {

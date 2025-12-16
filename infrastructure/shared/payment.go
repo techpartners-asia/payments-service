@@ -54,6 +54,7 @@ type (
 		Password    string
 		BaseUrl     string
 		CallbackUrl string
+		SimpleID    string
 	}
 	PocketAdapterDTO struct {
 		Merchant      string

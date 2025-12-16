@@ -13,11 +13,12 @@ import (
 
 // SimpleAdapter implements PaymentProvider for Simple.
 type SimpleAdapter struct {
-	client simple.Simple
+	client   simple.Simple
+	simpleID string
 }
 
 func NewSimpleAdapter(input sharedDTO.SimpleAdapterDTO) *SimpleAdapter {
-	return &SimpleAdapter{client: simple.New(input.UserName, input.Password, input.BaseUrl, input.CallbackUrl)}
+	return &SimpleAdapter{client: simple.New(input.UserName, input.Password, input.BaseUrl, input.CallbackUrl), simpleID: input.SimpleID}
 }
 
 func (a *SimpleAdapter) CreateInvoice(payment *entity.PaymentEntity) (*paymentServiceResponseDTO.InvoiceResult, error) {

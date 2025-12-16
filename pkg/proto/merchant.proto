@@ -84,6 +84,7 @@ message SimpleAdapterProto {
     string password     = 2;
     string base_url     = 3;
     string callback_url = 4;
+    string simple_id    = 5;
 }
 
 
