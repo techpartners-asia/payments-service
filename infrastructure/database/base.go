@@ -5,6 +5,7 @@ import (
 	"log"
 	"sync"
 
+	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 	configPkg "git.techpartners.asia/gateway-services/payment-service/pkg/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -36,6 +37,17 @@ func Init() {
 		)
 		if err != nil {
 			log.Fatalf("Failed to connect to database: %v", err)
+		}
+
+		if err := db.AutoMigrate(
+			&entity.PaymentEntity{},
+			&entity.MerchantEntity{},
+			&entity.MerchantEbarimtEntity{},
+			&entity.EbarimtEntity{},
+			&entity.EbarimtReceiptEntity{},
+			&entity.EbarimtReceiptItemEntity{},
+		); err != nil {
+			log.Fatalf("Failed to migrate database: %v", err)
 		}
 
 		DB = db

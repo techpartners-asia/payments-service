@@ -928,7 +928,7 @@ func (x *MerchantPaymentCredentialResponse) GetToken() string {
 
 type MerchantResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -964,11 +964,11 @@ func (*MerchantResponse) Descriptor() ([]byte, []int) {
 	return file_merchant_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *MerchantResponse) GetId() uint64 {
+func (x *MerchantResponse) GetUid() string {
 	if x != nil {
-		return x.Id
+		return x.Uid
 	}
-	return 0
+	return ""
 }
 
 func (x *MerchantResponse) GetName() string {
@@ -981,8 +981,9 @@ func (x *MerchantResponse) GetName() string {
 type CreateMerchantRequest struct {
 	state             protoimpl.MessageState            `protogen:"open.v1"`
 	Name              string                            `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	EbarimtCredential *MerchantEbarimtCredentialRequest `protobuf:"bytes,2,opt,name=ebarimtCredential,proto3" json:"ebarimtCredential,omitempty"`
-	PaymentCredential *MerchantPaymentCredentialRequest `protobuf:"bytes,3,opt,name=paymentCredential,proto3" json:"paymentCredential,omitempty"`
+	Uid               string                            `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	EbarimtCredential *MerchantEbarimtCredentialRequest `protobuf:"bytes,3,opt,name=ebarimtCredential,proto3" json:"ebarimtCredential,omitempty"`
+	PaymentCredential *MerchantPaymentCredentialRequest `protobuf:"bytes,4,opt,name=paymentCredential,proto3" json:"paymentCredential,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1024,6 +1025,13 @@ func (x *CreateMerchantRequest) GetName() string {
 	return ""
 }
 
+func (x *CreateMerchantRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
 func (x *CreateMerchantRequest) GetEbarimtCredential() *MerchantEbarimtCredentialRequest {
 	if x != nil {
 		return x.EbarimtCredential
@@ -1040,7 +1048,7 @@ func (x *CreateMerchantRequest) GetPaymentCredential() *MerchantPaymentCredentia
 
 type UpdateRequest struct {
 	state             protoimpl.MessageState            `protogen:"open.v1"`
-	Id                uint64                            `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uid               string                            `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Name              string                            `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	EbarimtCredential *MerchantEbarimtCredentialRequest `protobuf:"bytes,3,opt,name=ebarimtCredential,proto3" json:"ebarimtCredential,omitempty"`
 	PaymentCredential *MerchantPaymentCredentialRequest `protobuf:"bytes,4,opt,name=paymentCredential,proto3" json:"paymentCredential,omitempty"`
@@ -1078,11 +1086,11 @@ func (*UpdateRequest) Descriptor() ([]byte, []int) {
 	return file_merchant_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *UpdateRequest) GetId() uint64 {
+func (x *UpdateRequest) GetUid() string {
 	if x != nil {
-		return x.Id
+		return x.Uid
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateRequest) GetName() string {
@@ -1108,7 +1116,7 @@ func (x *UpdateRequest) GetPaymentCredential() *MerchantPaymentCredentialRequest
 
 type MerchantIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1143,11 +1151,11 @@ func (*MerchantIDRequest) Descriptor() ([]byte, []int) {
 	return file_merchant_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *MerchantIDRequest) GetId() uint64 {
+func (x *MerchantIDRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type SuccessResponse struct {
@@ -1274,27 +1282,28 @@ const file_merchant_proto_rawDesc = "" +
 	"\x06monpay\x18\b \x01(\v2\x13.MonpayAdapterProtoR\x06monpay\x12+\n" +
 	"\x06golomt\x18\t \x01(\v2\x13.GolomtAdapterProtoR\x06golomt\"9\n" +
 	"!MerchantPaymentCredentialResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"6\n" +
-	"\x10MerchantResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xcd\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"8\n" +
+	"\x10MerchantResponse\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xdf\x01\n" +
 	"\x15CreateMerchantRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12O\n" +
-	"\x11ebarimtCredential\x18\x02 \x01(\v2!.MerchantEbarimtCredentialRequestR\x11ebarimtCredential\x12O\n" +
-	"\x11paymentCredential\x18\x03 \x01(\v2!.MerchantPaymentCredentialRequestR\x11paymentCredential\"\xd5\x01\n" +
-	"\rUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
+	"\x03uid\x18\x02 \x01(\tR\x03uid\x12O\n" +
+	"\x11ebarimtCredential\x18\x03 \x01(\v2!.MerchantEbarimtCredentialRequestR\x11ebarimtCredential\x12O\n" +
+	"\x11paymentCredential\x18\x04 \x01(\v2!.MerchantPaymentCredentialRequestR\x11paymentCredential\"\xd7\x01\n" +
+	"\rUpdateRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12O\n" +
 	"\x11ebarimtCredential\x18\x03 \x01(\v2!.MerchantEbarimtCredentialRequestR\x11ebarimtCredential\x12O\n" +
 	"\x11paymentCredential\x18\x04 \x01(\v2!.MerchantPaymentCredentialRequestR\x11paymentCredential\"#\n" +
 	"\x11MerchantIDRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"+\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"+\n" +
 	"\x0fSuccessResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xd5\x01\n" +
-	"\x0fMerchantService\x123\n" +
-	"\x06Create\x12\x16.CreateMerchantRequest\x1a\x11.MerchantResponse\x120\n" +
-	"\aGetByID\x12\x12.MerchantIDRequest\x1a\x11.MerchantResponse\x12+\n" +
-	"\x06Update\x12\x0e.UpdateRequest\x1a\x11.MerchantResponse\x12.\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xd3\x01\n" +
+	"\x0fMerchantService\x122\n" +
+	"\x06Create\x12\x16.CreateMerchantRequest\x1a\x10.SuccessResponse\x120\n" +
+	"\aGetByID\x12\x12.MerchantIDRequest\x1a\x11.MerchantResponse\x12*\n" +
+	"\x06Update\x12\x0e.UpdateRequest\x1a\x10.SuccessResponse\x12.\n" +
 	"\x06Delete\x12\x12.MerchantIDRequest\x1a\x10.SuccessResponseB\x03Z\x01.b\x06proto3"
 
 var (
@@ -1347,9 +1356,9 @@ var file_merchant_proto_depIdxs = []int32{
 	15, // 14: MerchantService.GetByID:input_type -> MerchantIDRequest
 	14, // 15: MerchantService.Update:input_type -> UpdateRequest
 	15, // 16: MerchantService.Delete:input_type -> MerchantIDRequest
-	12, // 17: MerchantService.Create:output_type -> MerchantResponse
+	16, // 17: MerchantService.Create:output_type -> SuccessResponse
 	12, // 18: MerchantService.GetByID:output_type -> MerchantResponse
-	12, // 19: MerchantService.Update:output_type -> MerchantResponse
+	16, // 19: MerchantService.Update:output_type -> SuccessResponse
 	16, // 20: MerchantService.Delete:output_type -> SuccessResponse
 	17, // [17:21] is the sub-list for method output_type
 	13, // [13:17] is the sub-list for method input_type

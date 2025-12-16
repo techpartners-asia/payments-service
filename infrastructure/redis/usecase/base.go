@@ -11,13 +11,13 @@ import (
 )
 
 const (
-	MerchantCacheKey = "merchant_cache_%d"
+	MerchantCacheKey = "merchant_cache_%v"
 )
 
 type MerchantUsecase interface {
-	Cache(merchantID uint, paymentCredentials *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) error
-	Get(merchantID uint) (*redisDTO.RedisCacheDTO, error)
-	Remove(merchantID uint) error
+	Cache(merchantUID string, paymentCredentials *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) error
+	Get(merchantUID string) (*redisDTO.RedisCacheDTO, error)
+	Remove(merchantUID string) error
 }
 
 type merchantUsecase struct {
@@ -28,23 +28,23 @@ func NewMerchantUsecase(redisRepository repositoryRedis.RedisRepository) Merchan
 	return &merchantUsecase{redisRepository: redisRepository}
 }
 
-func (u *merchantUsecase) Cache(merchantID uint, paymentCredentials *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) error {
-	paymentCacheDTO := redisDTO.ToRedisCacheDTO(merchantID, paymentCredentials, ebarimt)
+func (u *merchantUsecase) Cache(merchantUID string, paymentCredentials *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) error {
+	paymentCacheDTO := redisDTO.ToRedisCacheDTO(merchantUID, paymentCredentials, ebarimt)
 	if paymentCacheDTO == nil {
 		return errors.New("failed to create payment cache")
 	}
-	return u.redisRepository.Set(fmt.Sprintf(MerchantCacheKey, merchantID), paymentCacheDTO, 0)
+	return u.redisRepository.Set(fmt.Sprintf(MerchantCacheKey, merchantUID), paymentCacheDTO, 0)
 }
 
-func (u *merchantUsecase) Get(merchantID uint) (*redisDTO.RedisCacheDTO, error) {
+func (u *merchantUsecase) Get(merchantUID string) (*redisDTO.RedisCacheDTO, error) {
 	var cache redisDTO.RedisCacheDTO
-	if err := u.redisRepository.Get(fmt.Sprintf(MerchantCacheKey, merchantID), &cache); err != nil {
+	if err := u.redisRepository.Get(fmt.Sprintf(MerchantCacheKey, merchantUID), &cache); err != nil {
 		return nil, err
 	}
 
 	return &cache, nil
 }
 
-func (u *merchantUsecase) Remove(merchantID uint) error {
-	return u.redisRepository.Delete(fmt.Sprintf(MerchantCacheKey, merchantID))
+func (u *merchantUsecase) Remove(merchantUID string) error {
+	return u.redisRepository.Delete(fmt.Sprintf(MerchantCacheKey, merchantUID))
 }

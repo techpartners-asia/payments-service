@@ -41,7 +41,7 @@ func (u *paymentUsecase) Create(ctx context.Context, req *paymentProto.PaymentCr
 	}
 
 	// * : Add payment service to create payment
-	result, err := paymentService.NewPaymentService(payment.MerchantID, u.paymentRepo, u.redisRepository).Create(payment)
+	result, err := paymentService.NewPaymentService(payment.Merchant.UID, u.paymentRepo, u.redisRepository).Create(payment)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
@@ -62,7 +62,7 @@ func (u *paymentUsecase) Check(ctx context.Context, req *paymentProto.PaymentChe
 	}
 
 	// * : Add payment service to check payment
-	result, err := paymentService.NewPaymentService(payment.MerchantID, u.paymentRepo, u.redisRepository).Check(payment)
+	result, err := paymentService.NewPaymentService(payment.Merchant.UID, u.paymentRepo, u.redisRepository).Check(payment)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
@@ -112,7 +112,7 @@ func (u *paymentUsecase) CheckStream(req *paymentProto.PaymentCheckRequest, stre
 		}
 
 		// * : Add payment service to check payment
-		result, err := paymentService.NewPaymentService(payment.MerchantID, u.paymentRepo, u.redisRepository).Check(payment)
+		result, err := paymentService.NewPaymentService(payment.Merchant.UID, u.paymentRepo, u.redisRepository).Check(payment)
 		if err != nil {
 			return status.Errorf(codes.Internal, "Error checking payment: %v", err)
 		}

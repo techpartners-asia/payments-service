@@ -29,9 +29,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MerchantServiceClient interface {
-	Create(ctx context.Context, in *CreateMerchantRequest, opts ...grpc.CallOption) (*MerchantResponse, error)
+	Create(ctx context.Context, in *CreateMerchantRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 	GetByID(ctx context.Context, in *MerchantIDRequest, opts ...grpc.CallOption) (*MerchantResponse, error)
-	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*MerchantResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 	Delete(ctx context.Context, in *MerchantIDRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 }
 
@@ -43,9 +43,9 @@ func NewMerchantServiceClient(cc grpc.ClientConnInterface) MerchantServiceClient
 	return &merchantServiceClient{cc}
 }
 
-func (c *merchantServiceClient) Create(ctx context.Context, in *CreateMerchantRequest, opts ...grpc.CallOption) (*MerchantResponse, error) {
+func (c *merchantServiceClient) Create(ctx context.Context, in *CreateMerchantRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MerchantResponse)
+	out := new(SuccessResponse)
 	err := c.cc.Invoke(ctx, MerchantService_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,9 +63,9 @@ func (c *merchantServiceClient) GetByID(ctx context.Context, in *MerchantIDReque
 	return out, nil
 }
 
-func (c *merchantServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*MerchantResponse, error) {
+func (c *merchantServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MerchantResponse)
+	out := new(SuccessResponse)
 	err := c.cc.Invoke(ctx, MerchantService_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -87,9 +87,9 @@ func (c *merchantServiceClient) Delete(ctx context.Context, in *MerchantIDReques
 // All implementations must embed UnimplementedMerchantServiceServer
 // for forward compatibility.
 type MerchantServiceServer interface {
-	Create(context.Context, *CreateMerchantRequest) (*MerchantResponse, error)
+	Create(context.Context, *CreateMerchantRequest) (*SuccessResponse, error)
 	GetByID(context.Context, *MerchantIDRequest) (*MerchantResponse, error)
-	Update(context.Context, *UpdateRequest) (*MerchantResponse, error)
+	Update(context.Context, *UpdateRequest) (*SuccessResponse, error)
 	Delete(context.Context, *MerchantIDRequest) (*SuccessResponse, error)
 	mustEmbedUnimplementedMerchantServiceServer()
 }
@@ -101,13 +101,13 @@ type MerchantServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMerchantServiceServer struct{}
 
-func (UnimplementedMerchantServiceServer) Create(context.Context, *CreateMerchantRequest) (*MerchantResponse, error) {
+func (UnimplementedMerchantServiceServer) Create(context.Context, *CreateMerchantRequest) (*SuccessResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedMerchantServiceServer) GetByID(context.Context, *MerchantIDRequest) (*MerchantResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetByID not implemented")
 }
-func (UnimplementedMerchantServiceServer) Update(context.Context, *UpdateRequest) (*MerchantResponse, error) {
+func (UnimplementedMerchantServiceServer) Update(context.Context, *UpdateRequest) (*SuccessResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedMerchantServiceServer) Delete(context.Context, *MerchantIDRequest) (*SuccessResponse, error) {

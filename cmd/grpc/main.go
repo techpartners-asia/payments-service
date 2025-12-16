@@ -1,6 +1,7 @@
 package grpcCmd
 
 import (
+	"fmt"
 	"log"
 	"net"
 
@@ -13,6 +14,8 @@ import (
 )
 
 func Run() {
+
+	fmt.Println("Starting gRPC server...")
 
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {
@@ -31,6 +34,14 @@ func Run() {
 	// * : Register Services
 	grpcRoutes.RegisterServices(grpcServer, redisRepository, paymentRepo)
 	grpcRoutes.RegisterMerchantServices(grpcServer, merchantRepo, ebarimtRepo, redisRepository)
+
+	// after 10 seconds , call CheckStream method with payment uid
+	// go func() {
+	// 	time.Sleep(10 * time.Second)
+	// 	grpcServer.CheckStream(context.Background(), &paymentProto.PaymentCheckRequest{
+	// 		Uid: "1234567890",
+	// 	})
+	// }()
 
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)

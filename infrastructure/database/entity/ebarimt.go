@@ -58,3 +58,13 @@ type (
 		Receipt            *EbarimtReceiptEntity `gorm:"foreignKey:ReceiptID" json:"receipt"`
 	}
 )
+
+func (e *EbarimtEntity) TableName() string {
+	return "ebarimt"
+}
+func (e *EbarimtReceiptEntity) TableName() string {
+	return "ebarimt_receipt"
+}
+func (e *EbarimtReceiptItemEntity) TableName() string {
+	return "ebarimt_receipt_item"
+}

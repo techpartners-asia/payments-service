@@ -27,6 +27,7 @@ type (
 	MerchantEntity struct {
 		databaseBase.BaseEntity
 		Name string `gorm:"name" json:"name"`
+		UID  string `gorm:"uid" json:"uid"`
 	}
 
 	MerchantEbarimtEntity struct {
@@ -40,3 +41,10 @@ type (
 		DistrictCode string          `gorm:"district_code" json:"district_code"`
 	}
 )
+
+func (m *MerchantEntity) TableName() string {
+	return "merchants"
+}
+func (m *MerchantEbarimtEntity) TableName() string {
+	return "merchant_ebarimt"
+}

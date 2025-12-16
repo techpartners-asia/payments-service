@@ -23,10 +23,10 @@ type paymentService struct {
 	configs sharedDTO.SharedPaymentConfigDTO
 }
 
-func NewPaymentService(merchantID uint, paymentRepo repositoryPayment.PaymentRepository, redisRepository repositoryRedis.RedisRepository) PaymentService {
+func NewPaymentService(merchantUID string, paymentRepo repositoryPayment.PaymentRepository, redisRepository repositoryRedis.RedisRepository) PaymentService {
 
 	merchantUsecase := usecaseRedis.NewMerchantUsecase(redisRepository)
-	merchant, err := merchantUsecase.Get(merchantID)
+	merchant, err := merchantUsecase.Get(merchantUID)
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func NewPaymentService(merchantID uint, paymentRepo repositoryPayment.PaymentRep
 
 func (s *paymentService) Create(payment *entity.PaymentEntity) (*paymentServiceResponseDTO.InvoiceResult, error) {
 
-	switch payment.Type {
+	switch payment.PaymentType {
 	case entity.PaymentTypeQpay:
 		return adapters.NewQPayAdapter(s.configs.Qpay).CreateInvoice(payment)
 	case entity.PaymentTypeTokipay:
@@ -74,7 +74,7 @@ func (s *paymentService) Create(payment *entity.PaymentEntity) (*paymentServiceR
 
 func (s *paymentService) Check(payment *entity.PaymentEntity) (*paymentServiceResponseDTO.CheckInvoiceResult, error) {
 
-	switch payment.Type {
+	switch payment.PaymentType {
 	case entity.PaymentTypeQpay:
 		return adapters.NewQPayAdapter(s.configs.Qpay).CheckInvoice(payment)
 	case entity.PaymentTypeTokipay:

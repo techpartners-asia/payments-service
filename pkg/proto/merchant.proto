@@ -113,25 +113,26 @@ message MerchantPaymentCredentialResponse {
 }
 
 message MerchantResponse { 
-    uint64 id = 1;
+    string uid = 1;
     string name = 2;
 }
 
 message CreateMerchantRequest { 
     string name = 1;
-    MerchantEbarimtCredentialRequest ebarimtCredential = 2;
-    MerchantPaymentCredentialRequest paymentCredential = 3;
+    string uid = 2;
+    MerchantEbarimtCredentialRequest ebarimtCredential = 3;
+    MerchantPaymentCredentialRequest paymentCredential = 4;
 }
 
 message UpdateRequest { 
-    uint64 id = 1;
+    string uid = 1;
     string name = 2;
     MerchantEbarimtCredentialRequest ebarimtCredential = 3;
     MerchantPaymentCredentialRequest paymentCredential = 4;
 }
 
 message MerchantIDRequest { 
-    uint64 id = 1;
+    string id = 1;
 }
 
 message SuccessResponse { 
@@ -139,8 +140,8 @@ message SuccessResponse {
 }
 
 service MerchantService { 
-    rpc Create(CreateMerchantRequest) returns (MerchantResponse);
+    rpc Create(CreateMerchantRequest) returns (SuccessResponse);
     rpc GetByID(MerchantIDRequest) returns (MerchantResponse);
-    rpc Update(UpdateRequest) returns (MerchantResponse);
+    rpc Update(UpdateRequest) returns (SuccessResponse);
     rpc Delete(MerchantIDRequest) returns (SuccessResponse);
 }

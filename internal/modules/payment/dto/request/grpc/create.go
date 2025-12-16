@@ -8,13 +8,13 @@ import (
 
 func ToEntity(req *paymentProto.PaymentCreateRequest) *entity.PaymentEntity {
 	return &entity.PaymentEntity{
-		Amount:     float64(req.Amount),
-		Status:     entity.PaymentStatusPending,
-		Type:       ToType(req.Type),
-		MerchantID: uint(req.MerchantId),
-		Phone:      req.Phone,
-		CustomerID: uint(req.CustomerId),
-		Note:       req.Note,
+		Amount:      float64(req.Amount),
+		Status:      entity.PaymentStatusPending,
+		PaymentType: ToType(req.Type),
+		MerchantID:  uint(req.MerchantId),
+		Phone:       req.Phone,
+		CustomerID:  uint(req.CustomerId),
+		Note:        req.Note,
 	}
 }
 

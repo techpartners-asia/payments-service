@@ -8,6 +8,7 @@ import (
 func ToEntity(req *merchantProto.CreateMerchantRequest) *entity.MerchantEntity {
 	return &entity.MerchantEntity{
 		Name: req.Name,
+		UID:  req.Uid,
 	}
 }
 

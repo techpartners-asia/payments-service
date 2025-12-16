@@ -8,7 +8,7 @@ import (
 
 type (
 	RedisCacheDTO struct {
-		ID      uint                             `json:"id"`
+		UID     string                           `json:"uid"`
 		Configs sharedDTO.SharedPaymentConfigDTO `json:"configs"`
 		Ebarimt *RedisCacheEbarimtDTO            `json:"ebarimt"`
 	}
@@ -22,9 +22,9 @@ type (
 	}
 )
 
-func ToRedisCacheDTO(merchantID uint, paymentCredential *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) *RedisCacheDTO {
+func ToRedisCacheDTO(merchantUID string, paymentCredential *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) *RedisCacheDTO {
 	return &RedisCacheDTO{
-		ID:      merchantID,
+		UID:     merchantUID,
 		Configs: ToRedisCachePaymentDTO(paymentCredential),
 		Ebarimt: ToRedisCacheEbarimtDTO(ebarimt),
 	}

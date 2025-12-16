@@ -1,16 +1,13 @@
 package grpcMerchantRequestDTO
 
 import (
-	databaseBase "git.techpartners.asia/gateway-services/payment-service/infrastructure/database/base"
 	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
 )
 
 func UpdateToEntity(req *merchantProto.UpdateRequest) *entity.MerchantEntity {
 	return &entity.MerchantEntity{
-		BaseEntity: databaseBase.BaseEntity{
-			ID: uint(req.Id),
-		},
+		UID:  req.Uid,
 		Name: req.Name,
 	}
 }

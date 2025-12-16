@@ -7,7 +7,7 @@ import (
 
 func ToResponse(merchant *entity.MerchantEntity) *merchantProto.MerchantResponse {
 	return &merchantProto.MerchantResponse{
-		Id:   uint64(merchant.ID),
+		Uid:  merchant.UID,
 		Name: merchant.Name,
 	}
 }

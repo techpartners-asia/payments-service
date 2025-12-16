@@ -29,7 +29,7 @@ func NewMerchantUsecase(merchantRepo repositoryMerchant.MerchantRepository, ebar
 	}
 }
 
-func (u *merchantUsecase) Create(ctx context.Context, req *merchantProto.CreateMerchantRequest) (*merchantProto.MerchantResponse, error) {
+func (u *merchantUsecase) Create(ctx context.Context, req *merchantProto.CreateMerchantRequest) (*merchantProto.SuccessResponse, error) {
 	merchant, err := u.merchantRepo.CreateMerchant(grpcMerchantRequestDTO.ToEntity(req))
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
@@ -40,31 +40,30 @@ func (u *merchantUsecase) Create(ctx context.Context, req *merchantProto.CreateM
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	if err := u.merchantRedis.Cache(merchant.ID, req.PaymentCredential, ebarimtCredential); err != nil {
+	if err := u.merchantRedis.Cache(merchant.UID, req.PaymentCredential, ebarimtCredential); err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return grpcMerchantResponseDTO.ToResponse(merchant), nil
+	return &merchantProto.SuccessResponse{Success: true}, nil
 }
 
 func (u *merchantUsecase) GetByID(ctx context.Context, req *merchantProto.MerchantIDRequest) (*merchantProto.MerchantResponse, error) {
-	merchant, err := u.merchantRepo.GetMerchantByID(uint(req.Id))
+	merchant, err := u.merchantRepo.GetMerchantByUID(req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 	return grpcMerchantResponseDTO.ToResponse(merchant), nil
 }
 
-func (u *merchantUsecase) Update(ctx context.Context, req *merchantProto.UpdateRequest) (*merchantProto.MerchantResponse, error) {
-	merchant, err := u.merchantRepo.UpdateMerchant(grpcMerchantRequestDTO.UpdateToEntity(req))
-	if err != nil {
+func (u *merchantUsecase) Update(ctx context.Context, req *merchantProto.UpdateRequest) (*merchantProto.SuccessResponse, error) {
+	if _, err := u.merchantRepo.UpdateMerchant(grpcMerchantRequestDTO.UpdateToEntity(req)); err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
-	return grpcMerchantResponseDTO.ToResponse(merchant), nil
+	return &merchantProto.SuccessResponse{Success: true}, nil
 }
 
 func (u *merchantUsecase) Delete(ctx context.Context, req *merchantProto.MerchantIDRequest) (*merchantProto.SuccessResponse, error) {
-	err := u.merchantRepo.DeleteMerchant(uint(req.Id))
+	err := u.merchantRepo.DeleteMerchantByUID(req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}

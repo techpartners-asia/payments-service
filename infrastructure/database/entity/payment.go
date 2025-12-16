@@ -25,7 +25,7 @@ type (
 		RefInvoiceID string             `gorm:"ref_invoice_id" json:"ref_invoice_id"`
 		MerchantID   uint               `gorm:"merchant_id;index" json:"merchant_id"`
 		Merchant     *MerchantEntity    `gorm:"foreignKey:MerchantID" json:"merchant"`
-		Type         PaymentType        `gorm:"type" json:"type"`
+		PaymentType  PaymentType        `gorm:"payment_type" json:"payment_type"`
 		Logs         []PaymentLogEntity `gorm:"foreignKey:PaymentID" json:"logs"`
 	}
 
@@ -36,3 +36,10 @@ type (
 		Message   string         `gorm:"message" json:"message"`
 	}
 )
+
+func (p *PaymentEntity) TableName() string {
+	return "payments"
+}
+func (p *PaymentLogEntity) TableName() string {
+	return "payment_logs"
+}

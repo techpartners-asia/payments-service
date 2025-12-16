@@ -7,4 +7,6 @@ type MerchantRepository interface {
 	GetMerchantByID(id uint) (*entity.MerchantEntity, error)
 	UpdateMerchant(merchant *entity.MerchantEntity) (*entity.MerchantEntity, error)
 	DeleteMerchant(id uint) error
+	DeleteMerchantByUID(uid string) error
+	GetMerchantByUID(uid string) (*entity.MerchantEntity, error)
 }
