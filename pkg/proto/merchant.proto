@@ -145,4 +145,5 @@ service MerchantService {
     rpc GetByID(MerchantIDRequest) returns (MerchantResponse);
     rpc Update(UpdateRequest) returns (SuccessResponse);
     rpc Delete(MerchantIDRequest) returns (SuccessResponse);
+    rpc Save(CreateMerchantRequest) returns (SuccessResponse);
 }

@@ -20,7 +20,7 @@ type (
 		Status       PaymentStatus      `gorm:"status" json:"status"`
 		Amount       float64            `gorm:"amount" json:"amount"`
 		Phone        string             `gorm:"phone" json:"phone"`
-		CustomerID   uint               `gorm:"customer_id;index" json:"customer_id"`
+		CustomerID   string             `gorm:"customer_id;index" json:"customer_id"`
 		Note         string             `gorm:"note" json:"note"`
 		RefInvoiceID string             `gorm:"ref_invoice_id" json:"ref_invoice_id"`
 		MerchantID   uint               `gorm:"merchant_id;index" json:"merchant_id"`

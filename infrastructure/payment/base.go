@@ -9,7 +9,6 @@ import (
 	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
 	usecaseRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/usecase"
 	sharedDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/shared"
-	repositoryPayment "git.techpartners.asia/gateway-services/payment-service/internal/modules/payment/repository"
 )
 
 type PaymentService interface {
@@ -18,12 +17,10 @@ type PaymentService interface {
 }
 
 type paymentService struct {
-	paymentRepo repositoryPayment.PaymentRepository
-
 	configs sharedDTO.SharedPaymentConfigDTO
 }
 
-func NewPaymentService(merchantUID string, paymentRepo repositoryPayment.PaymentRepository, redisRepository repositoryRedis.RedisRepository) PaymentService {
+func NewPaymentService(merchantUID string, redisRepository repositoryRedis.RedisRepository) PaymentService {
 
 	merchantUsecase := usecaseRedis.NewMerchantUsecase(redisRepository)
 	merchant, err := merchantUsecase.Get(merchantUID)
@@ -32,8 +29,7 @@ func NewPaymentService(merchantUID string, paymentRepo repositoryPayment.Payment
 	}
 
 	return &paymentService{
-		paymentRepo: paymentRepo,
-		configs:     merchant.Configs,
+		configs: merchant.Configs,
 	}
 }
 
@@ -58,12 +54,12 @@ func (s *paymentService) Create(payment *entity.PaymentEntity) (*paymentServiceR
 		return adapters.NewSimpleAdapter(s.configs.Simple).CreateInvoice(payment)
 	case entity.PaymentTypeBalc:
 		return adapters.NewBalcCreditAdapter(s.configs.Balc).CreateInvoice(payment)
-		// case entity.PaymentTypeBpay:
-		// 	return adapters.NewBpayAdapter(s.configs.Bpay).CreateInvoice(payment)
-		// case entity.PaymentTypeEcommerce:
-		// 	return adapters.NewEcommerceAdapter(s.configs.Ecommerce).CreateInvoice(payment)
-		// case entity.PaymentTypeHipay:
-		// 	return adapters.NewHipayAdapter(s.configs.Hipay).CreateInvoice(payment)
+	case entity.PaymentTypeTino:
+		return adapters.NewTinoAdapter(s.configs.Tino).CreateInvoice(payment)
+	case entity.PaymentTypeBpay:
+		return adapters.NewBpayAdapter(s.configs.Bpay).CreateInvoice(payment)
+	case entity.PaymentTypeHipay:
+		return adapters.NewHipayAdapter(s.configs.Hipay).CreateInvoice(payment)
 		// case entity.PaymentTypeMongolchat:
 		// 	return adapters.NewMongolchatAdapter(s.configs.Mongolchat).CreateInvoice(payment)
 		// case entity.PaymentTypePass:

@@ -14,10 +14,10 @@ func NewMerchantRepository(db *gorm.DB) *MerchantRepositoryImpl {
 }
 
 func (r *MerchantRepositoryImpl) CreateMerchant(merchant *entity.MerchantEntity) (*entity.MerchantEntity, error) {
-	if err := r.db.Create(merchant).Error; err != nil {
+	if err := r.db.Create(&merchant).Error; err != nil {
 		return nil, err
 	}
-	return merchant, nil
+	return r.GetMerchantByUID(merchant.UID)
 }
 
 func (r *MerchantRepositoryImpl) GetMerchantByID(id uint) (*entity.MerchantEntity, error) {
@@ -30,10 +30,10 @@ func (r *MerchantRepositoryImpl) GetMerchantByID(id uint) (*entity.MerchantEntit
 }
 
 func (r *MerchantRepositoryImpl) UpdateMerchant(merchant *entity.MerchantEntity) (*entity.MerchantEntity, error) {
-	if err := r.db.Save(merchant).Error; err != nil {
+	if err := r.db.Model(&entity.MerchantEntity{}).Where("uid = ?", merchant.UID).Updates(merchant).Error; err != nil {
 		return nil, err
 	}
-	return merchant, nil
+	return r.GetMerchantByUID(merchant.UID)
 }
 
 func (r *MerchantRepositoryImpl) DeleteMerchant(id uint) error {
@@ -45,7 +45,7 @@ func (r *MerchantRepositoryImpl) DeleteMerchant(id uint) error {
 
 func (r *MerchantRepositoryImpl) GetMerchantByUID(uid string) (*entity.MerchantEntity, error) {
 	var merchant entity.MerchantEntity
-	if err := r.db.Where("uid = ?", uid).Preload("Merchant").First(&merchant).Error; err != nil {
+	if err := r.db.Where("uid = ?", uid).First(&merchant).Error; err != nil {
 		return nil, err
 	}
 	return &merchant, nil

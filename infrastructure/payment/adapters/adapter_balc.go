@@ -2,6 +2,7 @@ package adapters
 
 import (
 	"fmt"
+	"strconv"
 
 	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 	paymentServiceResponseDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/payment/dto/response"
@@ -24,7 +25,12 @@ func (a *BalcCreditAdapter) CreateInvoice(payment *entity.PaymentEntity) (*payme
 		return nil, fmt.Errorf("balc adapter not configured")
 	}
 
-	creditCheck, err := a.client.LimitCheck(int(payment.CustomerID))
+	customerID, err := strconv.Atoi(payment.CustomerID)
+	if err != nil {
+		return nil, fmt.Errorf("error on convert customerID to int: %w", err)
+	}
+
+	creditCheck, err := a.client.LimitCheck(customerID)
 	if err != nil {
 		return nil, fmt.Errorf("error on balcAPI check: %w", err)
 	}
@@ -32,7 +38,7 @@ func (a *BalcCreditAdapter) CreateInvoice(payment *entity.PaymentEntity) (*payme
 		return nil, fmt.Errorf("таны кредит гүйлгээний дүнд хүрэхгүй байна")
 	}
 
-	loanAccountID, err := a.client.Loan(int(payment.Amount), "Зээл", int(payment.CustomerID))
+	loanAccountID, err := a.client.Loan(int(payment.Amount), "Зээл", customerID)
 	if err != nil {
 		return nil, fmt.Errorf("зээл авахад алдаа гарлаа: %w", err)
 	}

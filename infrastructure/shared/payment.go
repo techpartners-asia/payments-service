@@ -2,15 +2,20 @@ package sharedDTO
 
 type (
 	SharedPaymentConfigDTO struct {
-		Qpay      QpayAdapterDTO      `json:"qpay"`
-		Tokiay    TokipayAdapterDTO   `json:"tokiay"`
-		Monpay    MonpayAdapterDTO    `json:"monpay"`
-		Golomt    GolomtAdapterDTO    `json:"golomt"`
-		Socialpay SocialPayAdapterDTO `json:"socialpay"`
-		Storepay  StorePayAdapterDTO  `json:"storepay"`
-		Pocket    PocketAdapterDTO    `json:"pocket"`
-		Simple    SimpleAdapterDTO    `json:"simple"`
-		Balc      BalcAdapterDTO      `json:"balc"`
+		Qpay       QpayAdapterDTO       `json:"qpay"`
+		Tokiay     TokipayAdapterDTO    `json:"tokiay"`
+		Monpay     MonpayAdapterDTO     `json:"monpay"`
+		Golomt     GolomtAdapterDTO     `json:"golomt"`
+		Socialpay  SocialPayAdapterDTO  `json:"socialpay"`
+		Storepay   StorePayAdapterDTO   `json:"storepay"`
+		Pocket     PocketAdapterDTO     `json:"pocket"`
+		Simple     SimpleAdapterDTO     `json:"simple"`
+		Balc       BalcAdapterDTO       `json:"balc"`
+		Tino       TinoAdapterDTO       `json:"tino"`
+		Bpay       BpayAdapterDTO       `json:"bpay"`
+		Hipay      HipayAdapterDTO      `json:"hipay"`
+		Mongolchat MongolchatAdapterDTO `json:"mongolchat"`
+		Pass       PassAdapterDTO       `json:"pass"`
 	}
 
 	QpayAdapterDTO struct {
@@ -44,6 +49,12 @@ type (
 		CallbackUrl string
 	}
 
+	TinoAdapterDTO struct {
+		Url         string
+		User        string
+		Password    string
+		CallbackUrl string
+	}
 	SocialPayAdapterDTO struct {
 		Terminal string
 		Secret   string
@@ -77,6 +88,25 @@ type (
 		CallbackURL string
 	}
 	BalcAdapterDTO struct {
+		Endpoint string
+		Token    string
+	}
+
+	BpayAdapterDTO struct {
+		Endpoint string
+		Username string
+		Password string
+	}
+	HipayAdapterDTO struct {
+		Endpoint string
+		Token    string
+		EntityID string
+	}
+	MongolchatAdapterDTO struct {
+		Endpoint string
+		Token    string
+	}
+	PassAdapterDTO struct {
 		Endpoint string
 		Token    string
 	}

@@ -22,17 +22,23 @@ func (r *MerchantEbarimtRepositoryImpl) CreateEbarimt(merchantEbarimt *entity.Me
 
 func (r *MerchantEbarimtRepositoryImpl) GetEbarimtByID(id uint) (*entity.MerchantEbarimtEntity, error) {
 	var merchantEbarimt entity.MerchantEbarimtEntity
-	if err := r.db.Where("id = ?", id).First(&merchantEbarimt).Error; err != nil {
+	if err := r.db.Where("id = ?", id).Preload("Merchant").First(&merchantEbarimt).Error; err != nil {
 		return nil, err
 	}
 	return &merchantEbarimt, nil
 }
 
 func (r *MerchantEbarimtRepositoryImpl) UpdateEbarimt(merchantEbarimt *entity.MerchantEbarimtEntity) (*entity.MerchantEbarimtEntity, error) {
-	if err := r.db.Save(merchantEbarimt).Error; err != nil {
+	if err := r.db.Model(&entity.MerchantEbarimtEntity{}).Where("merchant_id = ?", merchantEbarimt.MerchantID).Updates(map[string]interface{}{
+		"url":           merchantEbarimt.Url,
+		"tin":           merchantEbarimt.Tin,
+		"pos_no":        merchantEbarimt.PosNo,
+		"branch_no":     merchantEbarimt.BranchNo,
+		"district_code": merchantEbarimt.DistrictCode,
+	}).Error; err != nil {
 		return nil, err
 	}
-	return merchantEbarimt, nil
+	return r.GetEbarimtByID(merchantEbarimt.ID)
 }
 
 func (r *MerchantEbarimtRepositoryImpl) DeleteEbarimt(id uint) error {

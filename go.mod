@@ -7,11 +7,13 @@ require (
 	github.com/bytedance/sonic v1.14.2
 	github.com/getsentry/sentry-go v0.40.0
 	github.com/getsentry/sentry-go/fiber v0.40.0
+	github.com/go-resty/resty/v2 v2.17.1
 	github.com/gofiber/fiber/v2 v2.52.10
 	github.com/minio/minio-go/v7 v7.0.97
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/spf13/viper v1.21.0
 	github.com/techpartners-asia/balc-api-go v1.0.0
+	github.com/techpartners-asia/bpay-go v1.0.1
 	github.com/techpartners-asia/golomt-api-go v0.0.15
 	github.com/techpartners-asia/monpay-go v1.0.0
 	github.com/techpartners-asia/pocket-go v0.0.0-20250109090209-90886b51b423
@@ -19,6 +21,7 @@ require (
 	github.com/techpartners-asia/simple-go v1.0.2
 	github.com/techpartners-asia/storepay-go v1.0.0
 	github.com/techpartners-asia/tokipay-go v1.0.0
+	github.com/techpartners-asia/hipay-go v1.0.1
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	gorm.io/driver/postgres v1.6.0

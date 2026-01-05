@@ -1308,12 +1308,13 @@ const file_merchant_proto_rawDesc = "" +
 	"\x11MerchantIDRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"+\n" +
 	"\x0fSuccessResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xd3\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x85\x02\n" +
 	"\x0fMerchantService\x122\n" +
 	"\x06Create\x12\x16.CreateMerchantRequest\x1a\x10.SuccessResponse\x120\n" +
 	"\aGetByID\x12\x12.MerchantIDRequest\x1a\x11.MerchantResponse\x12*\n" +
 	"\x06Update\x12\x0e.UpdateRequest\x1a\x10.SuccessResponse\x12.\n" +
-	"\x06Delete\x12\x12.MerchantIDRequest\x1a\x10.SuccessResponseB\x03Z\x01.b\x06proto3"
+	"\x06Delete\x12\x12.MerchantIDRequest\x1a\x10.SuccessResponse\x120\n" +
+	"\x04Save\x12\x16.CreateMerchantRequest\x1a\x10.SuccessResponseB\x03Z\x01.b\x06proto3"
 
 var (
 	file_merchant_proto_rawDescOnce sync.Once
@@ -1365,12 +1366,14 @@ var file_merchant_proto_depIdxs = []int32{
 	15, // 14: MerchantService.GetByID:input_type -> MerchantIDRequest
 	14, // 15: MerchantService.Update:input_type -> UpdateRequest
 	15, // 16: MerchantService.Delete:input_type -> MerchantIDRequest
-	16, // 17: MerchantService.Create:output_type -> SuccessResponse
-	12, // 18: MerchantService.GetByID:output_type -> MerchantResponse
-	16, // 19: MerchantService.Update:output_type -> SuccessResponse
-	16, // 20: MerchantService.Delete:output_type -> SuccessResponse
-	17, // [17:21] is the sub-list for method output_type
-	13, // [13:17] is the sub-list for method input_type
+	13, // 17: MerchantService.Save:input_type -> CreateMerchantRequest
+	16, // 18: MerchantService.Create:output_type -> SuccessResponse
+	12, // 19: MerchantService.GetByID:output_type -> MerchantResponse
+	16, // 20: MerchantService.Update:output_type -> SuccessResponse
+	16, // 21: MerchantService.Delete:output_type -> SuccessResponse
+	16, // 22: MerchantService.Save:output_type -> SuccessResponse
+	18, // [18:23] is the sub-list for method output_type
+	13, // [13:18] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name

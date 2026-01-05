@@ -8,6 +8,7 @@ import (
 	redisDTO "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/dto"
 	repositoryRedis "git.techpartners.asia/gateway-services/payment-service/infrastructure/redis/repository"
 	merchantProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/merchant"
+	"github.com/redis/go-redis/v9"
 )
 
 const (
@@ -29,6 +30,11 @@ func NewMerchantUsecase(redisRepository repositoryRedis.RedisRepository) Merchan
 }
 
 func (u *merchantUsecase) Cache(merchantUID string, paymentCredentials *merchantProto.MerchantPaymentCredentialRequest, ebarimt *entity.MerchantEbarimtEntity) error {
+
+	if err := u.redisRepository.Delete(fmt.Sprintf(MerchantCacheKey, merchantUID)); err != nil && err != redis.Nil {
+		return err
+	}
+
 	paymentCacheDTO := redisDTO.ToRedisCacheDTO(merchantUID, paymentCredentials, ebarimt)
 	if paymentCacheDTO == nil {
 		return errors.New("failed to create payment cache")

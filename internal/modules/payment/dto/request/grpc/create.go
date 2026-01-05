@@ -1,6 +1,8 @@
 package grpcRequestDTO
 
 import (
+	"strconv"
+
 	"git.techpartners.asia/gateway-services/payment-service/infrastructure/database/entity"
 
 	paymentProto "git.techpartners.asia/gateway-services/payment-service/pkg/proto/payment"
@@ -13,7 +15,7 @@ func ToEntity(req *paymentProto.PaymentCreateRequest) *entity.PaymentEntity {
 		PaymentType: ToType(req.Type),
 		MerchantID:  uint(req.MerchantId),
 		Phone:       req.Phone,
-		CustomerID:  uint(req.CustomerId),
+		CustomerID:  strconv.FormatUint(req.CustomerId, 10),
 		Note:        req.Note,
 	}
 }

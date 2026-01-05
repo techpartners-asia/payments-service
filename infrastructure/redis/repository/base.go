@@ -36,7 +36,13 @@ func (r *redisRepository) Get(key string, out any) error {
 	return json.Unmarshal([]byte(data), &out)
 }
 func (r *redisRepository) Set(key string, value interface{}, expiration time.Duration) error {
-	return r.redis.Set(r.ctx, key, value, expiration).Err()
+
+	jsonValue, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+
+	return r.redis.Set(r.ctx, key, jsonValue, expiration).Err()
 }
 
 func (r *redisRepository) Delete(key string) error {
